@@ -1,0 +1,92 @@
+.post-container {
+    margin: auto;
+    width: 55%;
+    padding-top: 35px;
+    height: 100%;
+    display: block;
+}
+
+.article-container {
+    float: left;
+    background-color: rgba(179, 181, 222, 0.1);
+    width: 66%;
+    border-top: 3px solid rgba(179, 181, 222);
+}
+
+
+
+.article {
+    float: center;
+    text-align: left;
+    /* background-color: cyan; */
+    margin: 3%;
+}
+
+.article-title {
+    font-family: 'Bad Script'; font-size:15px;
+    font-weight: bolder;
+}
+
+.article-info {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 3%;
+    /* background-color: gray; */
+    display: block;
+
+    color: rgba(0,0,0,.44);
+    fill: rgba(0,0,0,.44);
+}
+
+.article-body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 10px;
+    margin-top: 3%;
+    font-weight: normal;
+    /* background-color: white; */
+}
+
+
+
+.article-info-publish-date {
+    float: left;
+}
+
+.article-info-author-image {
+    float: right;
+    margin-right: 3%;
+}
+
+.article-info-author {
+    float: right;
+}
+
+.side-bar-container {
+    float: right;
+    background-color: rgba(255, 205, 0, .03);
+    width: 33%;
+    border-top: 3px solid rgba(255, 205, 0.1);
+}
+
+.side-bar {
+    float: center;
+    text-align: center;
+    margin: 3%;
+}
+
+.user-image {
+    max-width: 70%;
+    border-radius: 50%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.user-bio {
+    float: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    /* background-color: orange; */
+    text-align: center;
+    max-width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}

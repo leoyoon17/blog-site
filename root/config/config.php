@@ -1,0 +1,8 @@
+<?php 
+    define('ROOT_URL', 'http://localhost/phpsandbox/BlogSite/root/');
+    define('SITE_ROOT', dirname(__DIR__) . '/');
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'blogs');
+    define('DB_USER', 'jaeyeon');
+    define('DB_PASS', 'P4sswoid1!');
+?>
