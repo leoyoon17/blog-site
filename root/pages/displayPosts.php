@@ -1,59 +1,27 @@
 <?php
-    require('inc/mysql_fix_string.php');
+    require_once('inc/mysql_fix_string.php');
+    require_once("config/db.php");
+    require_once("objects/Posts.php");
 
-    $query = "SELECT * FROM posts ORDER BY created_at DESC";
+    $db = new Database();
+    $db = $db->getConnection();
 
-    $result = mysqli_query($conn, $query);
+    $post = new Post($db);
 
-    $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    function get_post($conn, $var) {
-        return $conn->real_escape_string($_POST[$var]);
-    }
-
-    
-    function delete_post($conn, $var) {
-        
-        if (isset($_POST['delete']) && isset($_POST['submit'])) {
-            $var = mysql_fix_string($conn, $var);
-            
-            $query = "DELETE FROM posts WHERE id='" . $var . "'";
-            $result = mysqli_query($conn, $query);
-
-            if (!$result) {
-                echo "DELETE Failed";
-            } else {
-                echo var_dump($var);
-                // header("Refresh:0");
-            }
-        }
-    }
-
-    mysqli_free_result($result);
+    $allPosts = $post->displayAll();
 ?>
 
 
-<div class="container" style="padding-top: 10px">
-    <h1> Posts </h1>
-    <div class="card bg-light mb-3">
-    <?php foreach($posts as $post) : ; ?>
-            <div class="card-header">
-            <h3><?php echo $post['title']; ?> </h3>
-            </div>
+<div class="container" style="padding-top:10px;">
+    <h1 style="margin-top:10px; margin-bottom:10px;"> Posts </h1>
+    <div class="card text-white bg-secondary mb-3" style="margin-bottom: 10px;">
+    <?php foreach($allPosts as $row) : ;?>
+        <div class="card-header"><?php echo $row['title'] ; ?></div>
             <div class="card-body">
-            <p><?php echo $post['summary'];?></p>
-            <p class="card-text" style="font-size: 85%"> Created on <?php echo $post['created_at']; ?> by <?php echo ($post['author'] == '') ? "Anonymous" : $post['author'];?> </p>
-            <br>
-
-            <a class="btn btn-default" href="pages/post.php?id=<?php echo $post['id']; ?>"> Read More </a>
-
-            <!-- <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-            <input type="hidden" name="delete" value="yes">
-            <input type="hidden" name="id" value="<?php delete_post($conn,$post['id']); ?>">
-            <input type="submit" name="submit" class="btn btn-danger" style="margin-top:10px" value="Delete Post <?php echo $post['id']; ?>">
-            </form> -->
-
+            <h4 class="card-title"><?php echo $row['summary'] ;?></h4>
+            <p class="card-text"><?php echo "Created on " . $row['created_at'] . " by " . $row['author'] ?></p>
+            <a class="btn btn-default1" href="pages/post.php?id=<?php echo $row['id']; ?>"> Read More </a>
             </div>
+            <br>
     <?php endforeach; ?>
-    </div>
 </div>

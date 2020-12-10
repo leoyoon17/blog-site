@@ -1,16 +1,26 @@
 <?php
-    require('../config/config.php');
-    require('../config/db.php');
-    require('../inc/mysql_fix_string.php');
+    require_once('../config/config.php');
+    require_once('../config/db.php');
+    require_once('../inc/mysql_fix_string.php');
+    require_once("../objects/Posts.php");
+
+    $db = new Database();
+    $db = $db->getConnection();
+    $post = new Post($db);
 
     $titleCheck = $authorCheck =  $summaryCheck = $contentCheck = '';
     
     if (isset($_POST['submit'])) {
         // Check for posted data
-        $title = mysql_entities_fix_string($conn, $_POST['title']);
-        $author = mysql_entities_fix_string($conn, $_POST['author']);
-        $summary = mysql_entities_fix_string($conn, $_POST['summary']);
-        $content = mysql_entities_fix_string($conn, $_POST['content']);
+        // $title = mysql_entities_fix_string($db, $_POST['title']);
+        // $author = mysql_entities_fix_string($db, $_POST['author']);
+        // $summary = mysql_entities_fix_string($db, $_POST['summary']);
+        // $content = mysql_entities_fix_string($db, $_POST['content']);
+
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $summary = $_POST['summary'];
+        $content = $_POST['content'];
 
         $titleCheck = (!empty($title)) ? 'is-valid' : 'is-invalid';
         $authorCheck = (!empty($author)) ? 'is-valid' : 'is-invalid';
@@ -23,18 +33,20 @@
             $summaryCheck === $contentCheck &&
             $contentCheck === 'is-valid') {
 
-                $stmt = $conn->prepare('INSERT INTO posts(author, title, summary, content) VALUES(?,?,?,?)');
-                $stmt->bind_param('ssss', $author, $title, $summary, $content);
-                $result = $stmt->execute();
 
-                if (!$result) {
-                    echo "Failed to insert into table: " . myslqi_error($conn);
-                } else {
-                    header("Location: " . ROOT_URL . '');
-                }
+                $post->addPost($author, $title, $summary, $content);
+                // $stmt = $conn->prepare('INSERT INTO posts(author, title, summary, content) VALUES(?,?,?,?)');
+                // $stmt->bind_param('ssss', $author, $title, $summary, $content);
+                // $result = $stmt->execute();
 
-                $stmt->close();
-                $conn->close();
+                // if (!$result) {
+                //     echo "Failed to insert into table: " . myslqi_error($conn);
+                // } else {
+                //     header("Location: " . ROOT_URL . '');
+                // }
+
+                // $stmt->close();
+                // $conn->close();
 
         } else {
 
