@@ -83,5 +83,40 @@
             }
 
         }
+
+        // Edit Post
+        public function editPost($id, $content, $title, $summary) {
+
+            $this->content = $content;
+            $this->title = $title;
+            $this->summary = $summary;
+            $this->id = intval($id);
+            var_dump($this->id);
+
+            $query = "UPDATE posts
+                        SET content = :content, title = :title, summary = :summary, updated_at = CURRENT_TIMESTAMP
+                        WHERE id = :id";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':content', $this->content, PDO::PARAM_STR);
+            $stmt->bindParam(':title', $this->title, PDO::PARAM_STR);
+            $stmt->bindParam(':summary', $this->summary, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $result = $stmt->execute();
+
+            if (!$result) {
+                echo "Failed to update row: " . mysqli_error($this->conn);
+            } else {
+                header("Location: " . ROOT_URL . '');
+            }
+
+        }
+
+        // Delete Post
+        public function deletePost($id) {
+
+        }
+
+        
     }
 ?>

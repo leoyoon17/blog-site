@@ -21,6 +21,7 @@
             <h4 class="card-title"><?php echo $row['summary'] ;?></h4>
             <p class="card-text"><?php echo "Created on " . $row['created_at'] . " by " . $row['author'] ?></p>
             <a class="btn btn-default1" href="pages/post.php?id=<?php echo $row['id']; ?>"> Read More </a>
+            <a class="btn btn-default1" href="pages/editPost.php?id=<?php echo $row['id']; ?>"> Edit </a>
             </div>
             <br>
     <?php endforeach; ?>

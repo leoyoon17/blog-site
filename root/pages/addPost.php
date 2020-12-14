@@ -8,7 +8,7 @@
     $db = $db->getConnection();
     $post = new Post($db);
 
-    $titleCheck = $authorCheck =  $summaryCheck = $contentCheck = '';
+    $titleCheck = $authorCheck = $summaryCheck = $contentCheck = '';
     
     if (isset($_POST['submit'])) {
         // Check for posted data
@@ -54,7 +54,7 @@
             <div class="alert alert-dismissible alert-warning">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <h4 class="alert-heading">Warning!</h4>
-                <p class="mb-0">Please fill in all details</p>
+                <p class="mb-0">Please fill in all fields</p>
             </div>
             _END;
         }
