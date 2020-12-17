@@ -4,7 +4,7 @@
     // Posts Object
     class Post {
         private $conn;
-        private $table_name = "posts";
+        private $table_name = "post";
 
         public $id;
         public $author;
@@ -32,7 +32,7 @@
         }
 
         public function getPost($id) {
-            $query = "SELECT * FROM posts WHERE id= " . $id;
+            $query = "SELECT * FROM " . $this->table_name . " WHERE id= " . $id;
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             $rows = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -65,7 +65,7 @@
         // Add new Post
         public function addPost($author, $title, $summary, $content) {
             $query = "INSERT INTO
-                        posts(author, title, summary, content)
+                        " . $this->table_name . "(author, title, summary, content)
                         VALUES(:author, :title, :summary, :content)
                         ";
 
@@ -77,7 +77,7 @@
             $result = $stmt->execute();
 
             if (!$result) {
-                echo "Failed to insert into table: " . mysqli_error($this->conn);
+                echo "Failed to insert into table: " . print_r($stmt->errorInfo());
             } else {
                 header("Location: " . ROOT_URL . '');
             }
@@ -92,7 +92,7 @@
             $this->summary = $summary;
             $this->id = intval($id);
 
-            $query = "UPDATE posts
+            $query = "UPDATE " . $this->table_name . "
                         SET content = :content, title = :title, summary = :summary, updated_at = CURRENT_TIMESTAMP
                         WHERE id = :id";
 
@@ -104,7 +104,7 @@
             $result = $stmt->execute();
 
             if (!$result) {
-                echo "Failed to update row: " . mysqli_error($this->conn);
+                echo "Failed to update row: " . print_r($stmt->errorInfo());
             } else {
                 header("Location: " . ROOT_URL . '');
             }
@@ -114,18 +114,17 @@
         public function deletePost($id) {
             $this->id = $id;
 
-            $query = "DELETE FROM posts WHERE id = :id";
+            $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
             $result = $stmt->execute();
 
             if (!$result) {
-                echo "Failed to delete row: " . mysqli_error($this->conn);
+                echo "Failed to delete row: " . print_r($stmt->errorInfo());
             } else {
                 header("Location: " . ROOT_URL . '');
             }
         }
-
-        
+  
     }
 ?>
