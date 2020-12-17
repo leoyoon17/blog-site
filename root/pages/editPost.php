@@ -48,8 +48,10 @@
         }
     }
 
-    if (isset($_POST['delete'])) {
-        // TODO: Delete Modal & Delete request to DB
+    else if (isset($_POST['delete'])) {
+        // TODO: Delete Confirmation Modal
+        $id = $_POST['id_0'];
+        $post->deletePost($id);
     }
 ?>
 

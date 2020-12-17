@@ -91,7 +91,6 @@
             $this->title = $title;
             $this->summary = $summary;
             $this->id = intval($id);
-            var_dump($this->id);
 
             $query = "UPDATE posts
                         SET content = :content, title = :title, summary = :summary, updated_at = CURRENT_TIMESTAMP
@@ -109,12 +108,22 @@
             } else {
                 header("Location: " . ROOT_URL . '');
             }
-
         }
 
         // Delete Post
         public function deletePost($id) {
+            $this->id = $id;
 
+            $query = "DELETE FROM posts WHERE id = :id";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $result = $stmt->execute();
+
+            if (!$result) {
+                echo "Failed to delete row: " . mysqli_error($this->conn);
+            } else {
+                header("Location: " . ROOT_URL . '');
+            }
         }
 
         
