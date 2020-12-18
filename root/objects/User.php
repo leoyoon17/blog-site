@@ -50,7 +50,7 @@
                 return False;
 
             } else {
-                 // Else, proceed with query
+                // Else, proceed with query
                 $query = "INSERT INTO 
                         " . $this->table_name . "(email, first_name, last_name, password)
                         VALUES(:email, :firstName, :lastName, :password)
@@ -72,6 +72,24 @@
                 } else {
                     header("Location: " . ROOT_URL . '');
                 }
+            }
+        }
+
+        public function login($email, $pw) {
+            $query = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Test this after checking var_dump of $user
+            if (isset($user)) {
+                if(password_verify($pw, $user['password'])) {
+                    // Valid Login
+                } else {
+                    // Invalid Password
+                }
+            } else {
+                // Invalid Username
             }
         }
     }

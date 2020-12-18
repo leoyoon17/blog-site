@@ -86,11 +86,9 @@
             </div>
 
             <?php if ($passwordStrengthCheck == "visible") { include('../components/passwordStrengthWarning.php'); } else if ($passwordMatchCheck == "visible") { include('../components/passwordMatchWarning.php'); }?>
-            
 
             <input class="btn btn-success" type="submit" value="Register" name="submit">
             <a class="btn btn-primary" type="button" value="Back" name="back" href="<?php echo ROOT_URL;?>"> Back </a>
-            
             
 
             </fieldset>
