@@ -2,7 +2,7 @@
     require_once('../config/config.php');
     require_once('../config/db.php');
     require_once('../inc/mysql_fix_string.php');
-    require_once("../objects/Posts.php");
+    require_once("../objects/Post.php");
 
     $db = new Database();
     $db = $db->getConnection();

@@ -36,6 +36,9 @@
       <li class="nav-item">
         <a class="nav-link" href="<?php echo ROOT_URL?>pages/registerUser.php">Register</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo ROOT_URL?>pages/login.php">Login</a>
+      </li>
       </ul>
 
       <input class="form-control mr-sm-2" type="text" placeholder="Search">

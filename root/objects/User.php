@@ -20,7 +20,6 @@
             $this->email = $email;
             $this->username = $email; // Username and email are the same thing for now.
 
-            // TODO: finish constructor?
         }
 
         // TODO: Getters and Setters
@@ -74,10 +73,7 @@
                     header("Location: " . ROOT_URL . '');
                 }
             }
-
-
         }
-
     }
 
 ?>
