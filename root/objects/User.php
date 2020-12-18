@@ -39,12 +39,44 @@
         public function setPW($pw) {                $this->pw = $pw;                }
 
         // Create New User (For DB)
-        public function registerUser($email, $firstName, $lastName, $pw) {
-            
+        public function create($email, $firstName, $lastName, $pw) {
+            // Check if email exists in DB
+            $searchQuery = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
+            $stmt = $this->conn->prepare($searchQuery);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+
+            $searchResult = $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                // E-mail already registered.
+                return False;
+
+            } else {
+                 // Else, proceed with query
+                $query = "INSERT INTO 
+                        " . $this->table_name . "(email, first_name, last_name, password)
+                        VALUES(:email, :firstName, :lastName, :password)
+                        ";
+
+                // Salt password
+                $pw = password_hash($pw, PASSWORD_DEFAULT);
+
+                $stmt = $this->conn->prepare($query);
+                $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+                $stmt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+                $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+                $stmt->bindParam(':password', $pw, PDO::PARAM_STR);
+
+                $result = $stmt->execute();
+
+                if (!$result) {
+                    echo "Failed to insert into table: " . print_r($stmt->errorInfo());
+                } else {
+                    header("Location: " . ROOT_URL . '');
+                }
+            }
+
+
         }
-
-
-
 
     }
 
