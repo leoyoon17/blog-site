@@ -31,18 +31,30 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
+        <?php if (!isset($_SESSION['username'])) {; ?>
+            <ul class="navbar-nav mr-auto" style="padding-right: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL?>pages/registerUser.php">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL?>pages/login.php">Login</a>
+                </li>
+            </ul>
+        <?php } else {; ?>
+            <ul class="navbar-nav mr-auto" style="padding-right: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL?>pages/userPage.php"><?php echo $firstName; ?></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL?>components/logout.php">Logout</a>
+                </li>
+            </ul>
+      <?php }; ?>
 
-      <ul class="navbar-nav mr-auto" style="padding-right: 10px;">
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo ROOT_URL?>pages/registerUser.php">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo ROOT_URL?>pages/login.php">Login</a>
-      </li>
-      </ul>
 
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
 
     </form>
   </div>

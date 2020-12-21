@@ -3,6 +3,27 @@
     require_once('../config/db.php');
     require_once('../objects/User.php');
     require_once('../objects/Post.php');
+
+    $invalidEntry = False;
+    if (!isset($_SESSION['username'])) {
+        if (isset($_POST['submit'])) {
+
+            $db = new Database();
+            $db = $db->getConnection();
+            $user = new User($db);
+
+            $email = $_POST['email'];
+            $pw = $_POST['password'];
+
+            $result = $user->login($email,$pw);
+            
+            // Handle invalid entry
+            if (!$result) {
+                $invalidEntry = True;
+            }
+        }
+    }
+    
 ?>
 
 <?php include('../inc/header.php') ;?>
@@ -17,6 +38,7 @@
         <div class="form-group">
             <label>Password</label>
             <input class="form-control" type="password" name="password" required="required" placeholder="Password">
+            <?php if ($invalidEntry) { include('../components/invalidLoginCredentials.php'); }?>
         </div>
 
         <input class="btn btn-success" type="submit" value="Login" name="submit">

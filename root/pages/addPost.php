@@ -1,8 +1,8 @@
 <?php
     require_once('../config/config.php');
-    require_once('../config/db.php');
-    require_once('../inc/mysql_fix_string.php');
-    require_once("../objects/Post.php");
+    require_once(DIR_BASE . 'config/db.php');
+    require_once(DIR_BASE . 'inc/mysql_fix_string.php');
+    require_once(DIR_BASE .'objects/Post.php');
 
     $db = new Database();
     $db = $db->getConnection();
@@ -33,20 +33,7 @@
             $summaryCheck === $contentCheck &&
             $contentCheck === 'is-valid') {
 
-
                 $post->addPost($author, $title, $summary, $content);
-                // $stmt = $conn->prepare('INSERT INTO posts(author, title, summary, content) VALUES(?,?,?,?)');
-                // $stmt->bind_param('ssss', $author, $title, $summary, $content);
-                // $result = $stmt->execute();
-
-                // if (!$result) {
-                //     echo "Failed to insert into table: " . myslqi_error($conn);
-                // } else {
-                //     header("Location: " . ROOT_URL . '');
-                // }
-
-                // $stmt->close();
-                // $conn->close();
 
         } else {
 

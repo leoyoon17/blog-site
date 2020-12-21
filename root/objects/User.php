@@ -37,6 +37,27 @@
         public function setEmail($email) {          $this->email = $email;          }
         public function setPW($pw) {                $this->pw = $pw;                }
 
+        // Get user for Session use
+        public function getUser($email) {
+            $query = "SELECT
+                    email, first_name, last_name
+                    FROM " . $this->table_name . "
+                    WHERE email = :email";
+
+            $stmt = $this->conn->prepare($query);
+            // $stmt->bindParam(':table_name', $this->table_name, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $result = $stmt->execute();
+
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            // var_dump($row);
+
+            $this->email = $row['email'];
+            $this->firstName = $row['first_name'];
+            $this->lastName = $row['last_name'];
+        }
+
         // Create New User (For DB)
         public function create($email, $firstName, $lastName, $pw) {
             // Check if email exists in DB
@@ -79,19 +100,55 @@
             $query = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Test this after checking var_dump of $user
-            if (isset($user)) {
+            $updateLoginState = "UPDATE " . $this->table_name . "
+                                    SET login_status = 1
+                                    WHERE email = :email";
+
+            if ($user) {
                 if(password_verify($pw, $user['password'])) {
-                    // Valid Login
+                    $stmt = $this->conn->prepare($updateLoginState);
+                    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+                    $result = $stmt->execute();
+                    // Valid Login, store email/username in session
+                    session_start();
+                    $_SESSION['username'] = $email;
+                    $_SESSION['time'] = time();
+
+                    if (!$result) {
+                        echo "Failed to Login: " . print_r($stmt->errorInfo());
+                    } else {
+                        header("Location: " . ROOT_URL . '');
+                    }
+
                 } else {
                     // Invalid Password
+                    return False;
                 }
             } else {
                 // Invalid Username
+                return False;
             }
         }
+
+        public function logout($email) {
+            $query = "UPDATE " . $this->table_name . "
+                        SET login_status = 0, last_login = CURRENT_TIMESTAMP
+                        WHERE email = :email";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $result = $stmt->execute();
+
+            if (!$result) {
+                echo "Failed to Logout: " . print_r($stmt->errorInfo());
+            } else {
+                header("Location: " . ROOT_URL. '');
+            }
+        }
+        
     }
 
 ?>
