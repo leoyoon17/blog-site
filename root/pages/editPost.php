@@ -10,7 +10,6 @@
     if (isset($_GET['id'])) {
         $id_0 = $_GET['id'];
         $post->getPost($_GET['id']);
-        // echo $post->id;
     } else {
         // echo "id not set";
     }

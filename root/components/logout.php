@@ -8,7 +8,6 @@
     $db = $db->getConnection();
     $user = new User($db);
 
-    // TODO: set last login for user
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }

@@ -22,7 +22,6 @@
 
         }
 
-        // TODO: Getters and Setters
         public function getFirstName() {    return $this->firstName;    }
         public function getLastName() {     return $this->lastName;     }
         public function getUsername() {     return $this->user;         }
@@ -45,13 +44,10 @@
                     WHERE email = :email";
 
             $stmt = $this->conn->prepare($query);
-            // $stmt->bindParam(':table_name', $this->table_name, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $result = $stmt->execute();
 
-
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            // var_dump($row);
 
             $this->email = $row['email'];
             $this->firstName = $row['first_name'];
@@ -112,6 +108,7 @@
                     $stmt = $this->conn->prepare($updateLoginState);
                     $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                     $result = $stmt->execute();
+                    
                     // Valid Login, store email/username in session
                     session_start();
                     $_SESSION['username'] = $email;
@@ -148,7 +145,7 @@
                 header("Location: " . ROOT_URL. '');
             }
         }
-        
+
     }
 
 ?>

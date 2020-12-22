@@ -2,7 +2,8 @@
     require_once('../config/config.php');
     require_once(DIR_BASE . 'config/db.php');
     require_once(DIR_BASE . 'inc/mysql_fix_string.php');
-    require_once(DIR_BASE .'objects/Post.php');
+    require_once(DIR_BASE . 'objects/Post.php');
+    
 
     $db = new Database();
     $db = $db->getConnection();
@@ -12,11 +13,6 @@
     
     if (isset($_POST['submit'])) {
         // Check for posted data
-        // $title = mysql_entities_fix_string($db, $_POST['title']);
-        // $author = mysql_entities_fix_string($db, $_POST['author']);
-        // $summary = mysql_entities_fix_string($db, $_POST['summary']);
-        // $content = mysql_entities_fix_string($db, $_POST['content']);
-
         $title = $_POST['title'];
         $author = $_POST['author'];
         $summary = $_POST['summary'];

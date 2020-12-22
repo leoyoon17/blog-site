@@ -32,4 +32,4 @@
         <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Bad Script'>
     </head>
     <body>
-        <?php if (!@include('inc/nav.php')) {   include('../inc/nav.php');  }    ?>
+        <?php if (!@include('inc/nav.php')) {   include('../inc/nav.php');  }   ?>

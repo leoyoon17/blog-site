@@ -6,7 +6,6 @@
 ?>
 
 <?php include('inc/header.php'); ?>
-<!-- <?php include('inc/nav.php');?> -->
     <div class='container'>
         <?php include('pages/displayPosts.php'); ?>
     </div>
