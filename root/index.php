@@ -4,8 +4,6 @@
     require_once(DIR_BASE . 'objects/User.php');
     require_once(DIR_BASE . 'objects/Post.php');
 
-    // echo "DIR_BASE: " . DIR_BASE . "<br";
-    // echo "dirname(): "  . dirname(__FILE__);
 ?>
 
 <?php include('inc/header.php'); ?>

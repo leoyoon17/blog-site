@@ -12,15 +12,14 @@
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-
-        if (isset($_SESSION['username'])) {
-            $username = $_SESSION['username'];
-            $user->getUser($_SESSION['username']);
-            $firstName = $user->getFirstName();
-            $getBlogResult = $blog->getBlog($user->id);
-        }
     }
 
+    if (isset($_SESSION['username'])) {
+        $username = $_SESSION['username'];
+        $user->getUser($_SESSION['username']);
+        $firstName = $user->getFirstName();
+        $getBlogResult = $blog->getBlog($user->getID());
+    }
 ?>
 
 <!DOCTYPE html>

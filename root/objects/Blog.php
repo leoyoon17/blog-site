@@ -15,6 +15,17 @@
             $this->conn = $db;
         }
 
+        public function getID()             {   return $this->id;           }
+        public function getUserID()         {   return $this->user_id;      }
+        public function getName()           {   return $this->name;         }
+        public function getDesription()     {   return $this->description;  }
+        public function getDateCreated()    {   return $this->created_at;   }
+        public function getDateUpdated()    {   return $this->updated_at;   }
+
+        public function setName($name)                  {   $this->name = $name;                }
+        public function setDescription($description)    {   $this->description = $description;  }
+        
+
         // User can only have 1 blog, so we use user_id to fetch details.
         // Since user will be logged in to to get access to blog functions
         public function getBlog($user_id, $blog_id = NULL) {

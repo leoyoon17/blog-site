@@ -62,10 +62,10 @@
         }
 
         // Add new Post
-        public function addPost($author, $title, $summary, $content) {
+        public function create($author, $title, $summary, $content, $userID, $blogID) {
             $query = "INSERT INTO
-                        " . $this->table_name . "(author, title, summary, content)
-                        VALUES(:author, :title, :summary, :content)
+                        " . $this->table_name . "(author, title, summary, content, user_id, blog_id)
+                        VALUES(:author, :title, :summary, :content, :user_id, :blog_id)
                         ";
 
             $stmt = $this->conn->prepare($query);
@@ -73,6 +73,8 @@
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':summary', $summary, PDO::PARAM_STR);
             $stmt->bindParam(':content', $content, PDO::PARAM_STR);
+            $stmt->bindParam(':user_id', $userID, PDO::PARAM_INT);
+            $stmt->bindParam(':blog_id', $blogID, PDO::PARAM_INT);
             $result = $stmt->execute();
 
             if (!$result) {

@@ -12,9 +12,7 @@
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo ROOT_URL?>pages/addPost.php">Add Post</a>
-      </li>
+      
 
       <li class="nav-item">
         <a class="nav-link" href="#">About</a>
@@ -45,9 +43,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo ROOT_URL?>pages/userPage.php"><?php echo $firstName; ?></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo ROOT_URL?>components/logout.php">Logout</a>
-                </li>
+
                 <!-- If user has a blog already, provide a link to their blog page, otherwise, display, "Create Blog" -->
                 <?php if (!$getBlogResult) { ;?>
                   <li class="nav-item">
@@ -55,17 +51,24 @@
                   </li>
                 <?php } else { ;?>
                   <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL?>pages/addPost.php">Add Post</a>
+                  </li>
+                  <li class="nav-item">
                       <a class="nav-link" href="<?php echo ROOT_URL?>pages/myBlog.php">My Blog</a>
                   </li>
-
                 <?php } ;?>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo ROOT_URL?>components/logout.php">Logout</a>
+                </li>
+                
             </ul>
         <?php }; ?>
 
 
 
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> -->
 
     </form>
   </div>

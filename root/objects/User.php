@@ -7,7 +7,7 @@
         private $firstName;
         private $lastName;
         private $email;
-        private $username;
+        private $id;
         private $pw;
         private $age;
 
@@ -22,12 +22,13 @@
 
         }
 
-        public function getFirstName() {    return $this->firstName;    }
-        public function getLastName() {     return $this->lastName;     }
-        public function getUsername() {     return $this->user;         }
-        public function getAge() {          return $this->age;          }
-        public function getEmail() {        return $this->email;        }
-        public function getPW() {           return $this->pw;           }
+        public function getID()         {   return $this->id;           }
+        public function getFirstName()  {   return $this->firstName;    }
+        public function getLastName()   {   return $this->lastName;     }
+        public function getUsername()   {   return $this->user;         }
+        public function getAge()        {   return $this->age;          }
+        public function getEmail()      {   return $this->email;        }
+        public function getPW()         {   return $this->pw;           }
 
         public function setFirstName($firstName) {  $this->firstName = $firstName;  }
         public function setLastName($lastName) {    $this->lastName = $lastName;    }
