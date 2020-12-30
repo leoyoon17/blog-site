@@ -1,11 +1,14 @@
 <?php 
+    // require_once('config/config.php');
     require_once(DIR_BASE . 'config/db.php');
     require_once(DIR_BASE . 'objects/User.php');
     require_once(DIR_BASE . 'objects/Post.php');
+    require_once(DIR_BASE . 'objects/Blog.php');
 
     $db = new Database();
     $db = $db->getConnection();
     $user = new User($db);
+    $blog = new Blog($db);
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
@@ -14,7 +17,7 @@
             $username = $_SESSION['username'];
             $user->getUser($_SESSION['username']);
             $firstName = $user->getFirstName();
-
+            $getBlogResult = $blog->getBlog($user->id);
         }
     }
 

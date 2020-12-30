@@ -50,23 +50,23 @@
     <h1>Add Post</h1>
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <fieldset>
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" class="form-control <?php echo htmlspecialchars($titleCheck); ?>" required="required" name="title"  placeholder="Title">
-        </div>
-        <div class="form-group">
-            <label>Author</label>
-            <input type="text" class="form-control <?php echo htmlspecialchars($authorCheck); ?>" required="required" name="author" placeholder="Author">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Summary</label>
-            <input type="text" class="form-control <?php echo htmlspecialchars($summaryCheck); ?>" required="required" name="summary" placeholder="Summary">
-        </div>
-        <div class="form-group">
-            <label for="exampleTextarea">Body</label>
-            <textarea class="form-control <?php echo htmlspecialchars($contentCheck); ?>" rows="3" required="required" style="margin-top: 0px; margin-bottom: 0px; height: 142px;" name="content"></textarea>
-        </div>
-        <input class="btn btn-success" type="submit" value="Post" name="submit">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control <?php echo htmlspecialchars($titleCheck); ?>" required="required" name="title"  placeholder="Title">
+            </div>
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control <?php echo htmlspecialchars($authorCheck); ?>" required="required" name="author" placeholder="Author">
+            </div>
+            <div class="form-group">
+                <label>Summary</label>
+                <input type="text" class="form-control <?php echo htmlspecialchars($summaryCheck); ?>" required="required" name="summary" placeholder="Summary">
+            </div>
+            <div class="form-group">
+                <label>Body</label>
+                <textarea class="form-control <?php echo htmlspecialchars($contentCheck); ?>" rows="3" required="required" style="margin-top: 0px; margin-bottom: 0px; height: 142px;" name="content"></textarea>
+            </div>
+            <input class="btn btn-success" type="submit" value="Post" name="submit">
         </fieldset>
     </form>
 </div>

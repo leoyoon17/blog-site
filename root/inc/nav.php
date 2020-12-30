@@ -48,8 +48,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo ROOT_URL?>components/logout.php">Logout</a>
                 </li>
+                <!-- If user has a blog already, provide a link to their blog page, otherwise, display, "Create Blog" -->
+                <?php if (!$getBlogResult) { ;?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?php echo ROOT_URL?>pages/createBlog.php">Create Blog</a>
+                  </li>
+                <?php } else { ;?>
+                  <li class="nav-item">
+                      <a class="nav-link" href="<?php echo ROOT_URL?>pages/myBlog.php">My Blog</a>
+                  </li>
+
+                <?php } ;?>
             </ul>
-      <?php }; ?>
+        <?php }; ?>
 
 
 

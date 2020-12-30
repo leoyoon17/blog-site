@@ -39,7 +39,7 @@
         // Get user for Session use
         public function getUser($email) {
             $query = "SELECT
-                    email, first_name, last_name
+                    email, first_name, last_name, id
                     FROM " . $this->table_name . "
                     WHERE email = :email";
 
@@ -52,6 +52,7 @@
             $this->email = $row['email'];
             $this->firstName = $row['first_name'];
             $this->lastName = $row['last_name'];
+            $this->id = $row['id'];
         }
 
         // Create New User (For DB)
