@@ -42,6 +42,7 @@
             
                 $this->id = $row['id'];
                 $this->user_id = $row['user_id'];
+                $this->name = $row['name'];
                 $this->description = $row['description'];
                 $this->created_at = $row['created_at'];
                 $this->updated_at = $row['updated_at'];

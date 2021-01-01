@@ -91,18 +91,115 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Blog Page */
-.banner-container {
-    width: 100%;
-    height: 100%;
-    background-color: green;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/banner.jpeg"); 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+/* Banner */
+.my-banner-container {
+    width : 100%;
+    height : 10rem;
+    background-image : linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5)), url("../images/banner.jpeg");
+
+    background-position : center;
+    background-repeat : no-repeat;
+    background-size : cover;
+    position : relative;
 }
 
-.banner-text {
-    color: red;
+.my-banner-text {
+    margin-top: 2.3%;
+    width: 70%;
+    height: 80%;
+    float: right;
+    color: white;
 }
+
+h1.my-banner-text {
+    margin-top: 10px;
+}
+
+/* p.my-banner-text {
+
+} */
+
+
+/* Post */
+@media (min-width: 1020px) {
+    .blog-container {
+        max-width:960px;
+    }
+
+}
+.blog-container {
+    margin: auto;
+    width: 90%;
+    padding-top: 10px;
+    /* height: 100%; */
+    display: block;
+    /* background-color: red; */
+}
+
+
+.my-blog-post {
+    height: 13rem;
+    max-height: 20%;
+    width: 100%;
+    /* background-color: purple; */
+    margin-bottom: 13px;
+}
+
+.my-blog-post-picture-container {
+    float: left;
+    height: 100%;
+    width: 40%;
+    margin-right: 3%;
+
+    background-image: url("../images/plant.png");
+    background-position : center;
+    background-repeat : no-repeat;
+    background-size : cover;
+    position : relative;
+    vertical-align: middle;
+    box-shadow: 5px 5px 7px grey;
+}
+
+
+.my-blog-post-details {
+    float: right;
+    height: 100%;
+    width: 57%;
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-color: blue; */
+    display: block;
+
+}
+
+h1.my-blog-post-details {
+    float: left;
+    width: 100%;
+    height: 20%;
+    margin-bottom: 0;
+    font-size: 3vw;
+    /* background-color: yellow; */
+}
+
+p.my-blog-post-details {
+    float: left;
+    width: 100%;
+    /* margin-top: 3%; */
+    margin-bottom: 3px;
+    height: 60%;
+    font-size: 1.5vw;
+    /* background-color: brown; */
+}
+
+.my-blog-post-bottom-container {
+    height: 18.5%;
+    width: 100%;
+    float: right;
+    /* margin-top: 3%; */
+    /* background-color: orange; */
+}
+
+
+
+
+
+
