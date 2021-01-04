@@ -26,27 +26,24 @@
         $blogID = $blog->getID();
         $userID = $user->getID();
 
-        $titleCheck = $authorCheck = $summaryCheck = $contentCheck = '';
+        $titleCheck = $summaryCheck = $contentCheck = '';
     
         if (isset($_POST['submit'])) {
             // Check for posted data
             $title = $_POST['title'];
-            $author = $_POST['author'];
             $summary = $_POST['summary'];
             $content = $_POST['content'];
 
             $titleCheck = (!empty($title)) ? 'is-valid' : 'is-invalid';
-            $authorCheck = (!empty($author)) ? 'is-valid' : 'is-invalid';
             $summaryCheck = (!empty($summary)) ? 'is-valid' : 'is-invalid';
             $contentCheck = (!empty($content)) ? 'is-valid' : 'is-invalid';
 
             // If all forms are filled, then continue with the query
-            if ($titleCheck === $authorCheck &&
-                $authorCheck === $summaryCheck &&
+            if ($titleCheck === $summaryCheck &&
                 $summaryCheck === $contentCheck &&
                 $contentCheck === 'is-valid') {
 
-                    $post->create($author, $title, $summary, $content, $userID, $blogID);
+                    $post->create($title, $summary, $content, $userID, $blogID);
 
             } else {
 
@@ -65,8 +62,6 @@
             // TODO: User is not logged in.
         }
 
-    
-
 ?>
 <?php include('../inc/header.php'); ?>
 
@@ -77,10 +72,6 @@
             <div class="form-group">
                 <label>Title</label>
                 <input type="text" class="form-control <?php echo htmlspecialchars($titleCheck); ?>" required="required" name="title"  placeholder="Title">
-            </div>
-            <div class="form-group">
-                <label>Author</label>
-                <input type="text" class="form-control <?php echo htmlspecialchars($authorCheck); ?>" required="required" name="author" placeholder="Author">
             </div>
             <div class="form-group">
                 <label>Summary</label>

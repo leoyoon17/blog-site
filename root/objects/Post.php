@@ -8,7 +8,6 @@
         public $id;
         public $userID;
         public $blogID;
-        public $author;
         public $title;
         public $summary;
         public $content;
@@ -21,7 +20,7 @@
 
         public function read() {
             $query = "SELECT
-                        author, title, summary, content, created_at, updated_at
+                        title, summary, content, created_at, updated_at
                         FROM
                             " . $this->table_name ."
                      ORDER BY created_at";
@@ -42,7 +41,6 @@
             $this->id = $id;
             $this->userID = $rows['user_id'];
             $this->blogID = $rows['blog_id'];
-            $this->author = $rows['author'];
             $this->title = $rows['title'];
             $this->summary = $rows['summary'];
             $this->content = $rows['content'];
@@ -80,14 +78,13 @@
         }
 
         // Add new Post
-        public function create($author, $title, $summary, $content, $userID, $blogID) {
+        public function create($title, $summary, $content, $userID, $blogID) {
             $query = "INSERT INTO
-                        " . $this->table_name . "(author, title, summary, content, user_id, blog_id)
-                        VALUES(:author, :title, :summary, :content, :user_id, :blog_id)
+                        " . $this->table_name . "( title, summary, content, user_id, blog_id)
+                        VALUES(:title, :summary, :content, :user_id, :blog_id)
                         ";
 
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':author', $author, PDO::PARAM_STR);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':summary', $summary, PDO::PARAM_STR);
             $stmt->bindParam(':content', $content, PDO::PARAM_STR);
