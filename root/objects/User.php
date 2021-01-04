@@ -56,6 +56,23 @@
             $this->id = $row['id'];
         }
 
+        // Get user with ID
+        public function getUserViaID($userID) {
+            $query = "SELECT email, first_name, last_name, id
+                        FROM " . $this->table_name . "
+                        WHERE id = :userID";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $this->email = $row['email'];
+            $this->firstName = $row['first_name'];
+            $this->lastName = $row['last_name'];
+            $this->id = $row['id'];
+        }
+
         // Create New User (For DB)
         public function create($email, $firstName, $lastName, $pw) {
             // Check if email exists in DB

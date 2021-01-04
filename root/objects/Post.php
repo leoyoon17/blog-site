@@ -66,7 +66,7 @@
         // Returns all the posts
         public function displayAll() {
             $query = "SELECT
-                        author, title, summary, created_at, id
+                        *
                         FROM
                             " . $this->table_name . "
                      ORDER BY created_at DESC";

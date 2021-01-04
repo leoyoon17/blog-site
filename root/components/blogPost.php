@@ -1,22 +1,42 @@
 <!-- Post Component: Displays a single post summary/thumbnail
     Requires Post::displayAll() or Post::getUserPosts() to fetch posts -->
 <?php
-    $sqlTime = strtotime($row['created_at']);
-    $date = date('Y-m-d', $sqlTime);
-
     // Check last element of current working directory for pathing
     $currDir = preg_split("#/#", getcwd());
     $readMorePath;
 
     switch ($currDir[count($currDir) - 1]) {
         case "pages":
+            require_once("../config/config.php");
+            require_once(DIR_BASE . "config/db.php");
+            require_once(DIR_BASE . "objects/Post.php");
+            require_once(DIR_BASE . "objects/User.php");
+
             $readMorePath = "post.php?id=";
             break;
         
         case "root":
+            require_once("config/config.php");
+            require_once("config/db.php");
+            require_once("objects/Post.php");
+            require_once("objects/User.php");
+
             $readMorePath = "pages/post.php?id=";
             break;
     }
+
+
+    $db = new Database();
+    $db = $db->getConnection();
+    
+    $user = new User($db);
+    $post = new Post($db);
+
+    $sqlTime = strtotime($row['created_at']);
+    $date = date('Y-m-d', $sqlTime);
+
+    $userID = $row['user_id'];
+    $user->getUserViaID($userID);
     
 ?>
 <div class="blog-container">
