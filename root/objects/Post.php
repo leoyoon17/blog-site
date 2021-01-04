@@ -6,6 +6,8 @@
         private $table_name = "post";
 
         public $id;
+        public $userID;
+        public $blogID;
         public $author;
         public $title;
         public $summary;
@@ -30,6 +32,7 @@
             return $stmt;
         }
 
+        // Returns all information on ONE post to be displayed.
         public function getPost($id) {
             $query = "SELECT * FROM " . $this->table_name . " WHERE id= " . $id;
             $stmt = $this->conn->prepare($query);
@@ -37,12 +40,27 @@
             $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $this->id = $id;
+            $this->userID = $rows['user_id'];
+            $this->blogID = $rows['blog_id'];
             $this->author = $rows['author'];
             $this->title = $rows['title'];
             $this->summary = $rows['summary'];
             $this->content = $rows['content'];
             $this->created_at = $rows['created_at'];
             $this->updated_at = $rows['updated_at'];
+        }
+
+        // Returns all posts made by a specific user.
+        public function getUserPosts($userID) {
+            $query = "SELECT * FROM " . $this->table_name . "
+                        WHERE user_id = :user_id ORDER BY created_at DESC";
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':user_id', $userID, PDO::PARAM_INT);
+            $stmt->execute();
+            $rows = $stmt->fetchALL(PDO::FETCH_ASSOC);
+
+            return $rows;
         }
 
         // Returns all the posts

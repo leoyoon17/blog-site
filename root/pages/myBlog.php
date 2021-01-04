@@ -2,6 +2,7 @@
     require_once('../config/config.php');
     require_once(DIR_BASE . 'config/db.php');
     require_once(DIR_BASE . 'objects/Blog.php');
+    require_once(DIR_BASE . 'objects/Post.php');
     require_once(DIR_BASE . 'objects/User.php');
 
     if (session_status() == PHP_SESSION_NONE) {
@@ -16,9 +17,11 @@
     $db = $db->getConnection();
     $user = new User($db);
     $blog = new Blog($db);
+    $post = new Post($db);
 
     $user->getUser($username);
     $blog->getBlog($user->getID());
+    $userPosts = $post->getUserPosts($user->getID());
 ?>
 
 <?php include('../inc/header.php'); ?>
@@ -33,31 +36,8 @@
     </div>
 </div>
 
-<!-- Main Container -->
-<div class="blog-container">
-    <!-- Post -->        
-    <div class="my-blog-post">
-        <div class="my-blog-post-picture-container"> </div>
-        <div class="my-blog-post-details">
-            <h1 class="my-blog-post-details">Post Title</h1>
-            <p class="my-blog-post-details">Post summary goes here...</p>
-            <div class="my-blog-post-bottom-container">
-                <a class="btn btn-outline-primary">Read More</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="my-blog-post">
-        <div class="my-blog-post-picture-container"> </div>
-        <div class="my-blog-post-details">
-            <h1 class="my-blog-post-details">Post Title</h1>
-            <p class="my-blog-post-details">Post summary goes here...</p>
-            <div class="my-blog-post-bottom-container">
-                <a class="btn btn-outline-primary">Read More</a>
-            </div>
-        </div>
-    </div>
-    
-</div>
+<?php foreach ($userPosts as $row) :?>
+        <?php include('../components/blogPost.php');?>
+<?php endforeach;?>
 
 <?php include('../inc/footer.php'); ?>

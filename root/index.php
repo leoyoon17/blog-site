@@ -7,9 +7,8 @@
 ?>
 
 <?php include('inc/header.php'); ?>
-    <div class='container'>
-        <?php include('pages/displayPosts.php'); ?>
-    </div>
+    
+    <?php include('pages/displayPosts.php'); ?>
 
 <?php include('inc/footer.php'); ?>
 

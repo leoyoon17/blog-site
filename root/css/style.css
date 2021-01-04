@@ -120,12 +120,11 @@ h1.my-banner-text {
 } */
 
 
-/* Post */
+/* Post Component */
 @media (min-width: 1020px) {
     .blog-container {
         max-width:960px;
     }
-
 }
 .blog-container {
     margin: auto;
@@ -176,7 +175,7 @@ h1.my-blog-post-details {
     width: 100%;
     height: 20%;
     margin-bottom: 0;
-    font-size: 3vw;
+    font-size: 30px;
     /* background-color: yellow; */
 }
 
@@ -186,7 +185,7 @@ p.my-blog-post-details {
     /* margin-top: 3%; */
     margin-bottom: 3px;
     height: 60%;
-    font-size: 1.5vw;
+    font-size: 17px;
     /* background-color: brown; */
 }
 
