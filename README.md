@@ -13,4 +13,5 @@ The main features of this website include:
 Future developments for this page:
   - Deploying on AWS?
   - Add JS attributes
+  - User Comments
   
