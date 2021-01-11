@@ -270,3 +270,56 @@ a.login-signup {
     color: gray;
     size: 55px !important;
 }
+
+/* Register User */
+.register-container {
+    width: 500px;
+    margin: auto;
+    height: auto;
+}
+
+.register-box {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    /* background-color: red; */
+    border:3px solid rgba(71, 69, 69, 0.20);
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    box-shadow: 5px 5px 7px grey;
+}
+
+.register-header {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    /* background-color: blue; */
+}
+
+h1.register-header {
+    size: 20px;
+}
+
+.register-body {
+    display: block;
+    margin:auto;
+    height: auto;
+    width: 80%;
+}
+
+.register-buttons {
+    width: 100%;
+    margin-bottom: 3px;
+}
+
+.register-to-login {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+a.register-to-login {
+    color: gray;
+    size: 55px !important;
+}
