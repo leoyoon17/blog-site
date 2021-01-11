@@ -1,10 +1,23 @@
 <!-- Post Component: Displays a single post summary/thumbnail
-    Requires Post::displayAll() or Post::getUserPosts() to fetch posts -->
-<?php
-    // Check last element of current working directory for pathing
-    $currDir = preg_split("#/#", getcwd());
-    $readMorePath;
+    Requires Post::displayAll() or Post::getUserPosts() to fetch posts
 
+    Note: $currDir may cause development issues on windows machines, as directories
+            on windows devices use backslashes in directories instead of
+            forward slashes -->
+<?php
+    // TODO: Fix directories issue with development on windows devices
+    // Check last element of current working directory for pathing
+
+    // require_once("config/config.php");
+    // require_once(DIR_BASE . "config/db.php");
+    // require_once(DIR_BASE . "objects/Post.php");
+    // require_once(DIR_BASE . "objects/User.php");
+
+    $currDir = preg_split("#/#", getcwd()); // For non-windows based OS
+    
+    var_dump($currDir);
+    $readMorePath;
+    var_dump($currDir[count($currDir) - 1]);
     switch ($currDir[count($currDir) - 1]) {
         case "pages":
             require_once("../config/config.php");
