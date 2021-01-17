@@ -28,6 +28,6 @@
 
 <?php include('../inc/header.php'); ?>
 
-    <?php include('../components/login.php'); ?>
+    <?php include('../components/loginCard.php'); ?>
 
 <?php include('../inc/footer.php'); ?>

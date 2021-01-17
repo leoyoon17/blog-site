@@ -34,7 +34,7 @@
             $descriptionCheck === 'is-valid') {
                 
                 $user->getUser($username);
-                $blog->create($title, $description, $user->id);
+                $blog->create($title, $description, $user->getID());
                 
         }
     }

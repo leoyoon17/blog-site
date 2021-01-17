@@ -64,6 +64,6 @@
 
 <?php include('../inc/header.php'); ?>
 
-    <?php include('../components/registerUser.php'); ?>
+    <?php include('../components/registerUserCard.php'); ?>
 
 <?php include('../inc/footer.php'); ?>

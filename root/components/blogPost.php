@@ -15,15 +15,18 @@
 
     $currDir = preg_split("#/#", getcwd()); // For non-windows based OS
     
-    var_dump($currDir);
+    // var_dump($currDir);
     $readMorePath;
-    var_dump($currDir[count($currDir) - 1]);
+    // var_dump($currDir[count($currDir) - 1]);
+
     switch ($currDir[count($currDir) - 1]) {
         case "pages":
             require_once("../config/config.php");
             require_once(DIR_BASE . "config/db.php");
             require_once(DIR_BASE . "objects/Post.php");
             require_once(DIR_BASE . "objects/User.php");
+
+            echo "pages";
 
             $readMorePath = "post.php?id=";
             break;
@@ -33,6 +36,8 @@
             require_once("config/db.php");
             require_once("objects/Post.php");
             require_once("objects/User.php");
+
+            echo "root";
 
             $readMorePath = "pages/post.php?id=";
             break;
@@ -52,6 +57,7 @@
     $user->getUserViaID($userID);
     
 ?>
+
 <div class="blog-container">
     <!-- Post -->        
     <div class="my-blog-post">
@@ -60,7 +66,9 @@
             <h1 class="my-blog-post-details"><?php echo $row['title']; ?></h1>
             <p class="my-blog-post-details"><?php echo $row['summary']; ?></p>
             <div class="my-blog-post-bottom-container">
-                <p class="card-text" style="float: left;"><?php echo $date . " by " . $user->getFirstName($row['user_id']) . " " . $user->getLastName($row['user_id']);?></p>
+                <a class="btn btn-link" href="<?php echo ROOT_URL; ?>pages/userPage.php?id=<?php echo $userID; ?>">
+                    <p class="card-text" style="float: left;"><?php echo $date . " by " . $user->getFirstName($row['user_id']) . " " . $user->getLastName($row['user_id']);?></p>
+                </a>
                 <a class="btn btn-outline-primary" style="float: right;" href="<?php echo $readMorePath; ?><?php echo $row['id']; ?>">Read More</a>
                 
             </div>

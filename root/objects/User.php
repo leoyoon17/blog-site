@@ -10,6 +10,7 @@
         private $id;
         private $pw;
         private $age;
+        private $created_at;
 
         // For the Constructor, you only need the DB unless you want to add other information
         function __construct($db, $firstName = NULL, $lastName = NULL, $email = NULL, $pw = NULL) {
@@ -29,6 +30,7 @@
         public function getAge()        {   return $this->age;          }
         public function getEmail()      {   return $this->email;        }
         public function getPW()         {   return $this->pw;           }
+        public function getCreatedAt()  {   return $this->created_at;   }
 
         public function setFirstName($firstName) {  $this->firstName = $firstName;  }
         public function setLastName($lastName) {    $this->lastName = $lastName;    }
@@ -40,7 +42,7 @@
         // Get user for Session use
         public function getUser($email) {
             $query = "SELECT
-                    email, first_name, last_name, id
+                    email, first_name, last_name, id, created_at
                     FROM " . $this->table_name . "
                     WHERE email = :email";
 
@@ -54,11 +56,12 @@
             $this->firstName = $row['first_name'];
             $this->lastName = $row['last_name'];
             $this->id = $row['id'];
+            $this->created_at = $row['created_at'];
         }
 
         // Get user with ID
         public function getUserViaID($userID) {
-            $query = "SELECT email, first_name, last_name, id
+            $query = "SELECT email, first_name, last_name, id, created_at
                         FROM " . $this->table_name . "
                         WHERE id = :userID";
             $stmt = $this->conn->prepare($query);
@@ -71,6 +74,7 @@
             $this->firstName = $row['first_name'];
             $this->lastName = $row['last_name'];
             $this->id = $row['id'];
+            $this->created_at = $row['created_at'];
         }
 
         // Create New User (For DB)

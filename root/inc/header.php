@@ -18,6 +18,7 @@
         $username = $_SESSION['username'];
         $user->getUser($_SESSION['username']);
         $firstName = $user->getFirstName();
+        $userID = $user->getID();
         $getBlogResult = $blog->getBlog($user->getID());
     }
 ?>
