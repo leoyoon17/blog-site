@@ -10,6 +10,7 @@
         private $id;
         private $pw;
         private $age;
+        private $bio;
         private $created_at;
 
         // For the Constructor, you only need the DB unless you want to add other information
@@ -30,19 +31,20 @@
         public function getAge()        {   return $this->age;          }
         public function getEmail()      {   return $this->email;        }
         public function getPW()         {   return $this->pw;           }
+        public function getBio()        {   return $this->bio;          }
         public function getCreatedAt()  {   return $this->created_at;   }
 
-        public function setFirstName($firstName) {  $this->firstName = $firstName;  }
-        public function setLastName($lastName) {    $this->lastName = $lastName;    }
-        public function setusername($username) {    $this->username = $username;    }
-        public function setAge($age) {              $this->age = $age;              }
-        public function setEmail($email) {          $this->email = $email;          }
-        public function setPW($pw) {                $this->pw = $pw;                }
+        public function setFirstName($firstName)    {   $this->firstName = $firstName;  }
+        public function setLastName($lastName)      {   $this->lastName = $lastName;    }
+        public function setusername($username)      {   $this->username = $username;    }
+        public function setAge($age)                {   $this->age = $age;              }
+        public function setEmail($email)            {   $this->email = $email;          }
+        public function setPW($pw)                  {   $this->pw = $pw;                }
 
         // Get user for Session use
         public function getUser($email) {
             $query = "SELECT
-                    email, first_name, last_name, id, created_at
+                    email, first_name, last_name, id, created_at, bio
                     FROM " . $this->table_name . "
                     WHERE email = :email";
 
@@ -56,12 +58,13 @@
             $this->firstName = $row['first_name'];
             $this->lastName = $row['last_name'];
             $this->id = $row['id'];
+            $this->bio = $row['bio'];
             $this->created_at = $row['created_at'];
         }
 
         // Get user with ID
         public function getUserViaID($userID) {
-            $query = "SELECT email, first_name, last_name, id, created_at
+            $query = "SELECT email, first_name, last_name, id, created_at, bio
                         FROM " . $this->table_name . "
                         WHERE id = :userID";
             $stmt = $this->conn->prepare($query);
@@ -74,6 +77,7 @@
             $this->firstName = $row['first_name'];
             $this->lastName = $row['last_name'];
             $this->id = $row['id'];
+            $this->bio = $row['bio'];
             $this->created_at = $row['created_at'];
         }
 
@@ -113,6 +117,31 @@
                     header("Location: " . ROOT_URL . '');
                 }
             }
+        }
+
+        // Edit User Information
+        public function update($id, $firstName, $lastName, $pw, $bio) {
+            $query = "UPDATE " . $this->table_name . "
+                        SET first_name = :firstName, last_name = :lastName, password = :password, bio = :bio
+                        WHERE id = :id";
+
+            $pw = password_hash($pw, PASSWORD_DEFAULT);
+
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
+            $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
+            $stmt->bindParam(':password', $pw, PDO::PARAM_STR);
+            $stmt->bindParam(':bio', $bio, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            $result = $stmt->execute();
+
+            if (!$result) {
+                echo "Failed to update User Details: " . print_r($stmt->errorInfo());
+            } else {
+                header("Location: " . ROOT_URL . "pages/userPage.php?id=" . $id);
+            }
+            
         }
 
         public function login($email, $pw) {
