@@ -26,8 +26,6 @@
             require_once(DIR_BASE . "objects/Post.php");
             require_once(DIR_BASE . "objects/User.php");
 
-            echo "pages";
-
             $readMorePath = "post.php?id=";
             break;
         
@@ -36,8 +34,6 @@
             require_once("config/db.php");
             require_once("objects/Post.php");
             require_once("objects/User.php");
-
-            echo "root";
 
             $readMorePath = "pages/post.php?id=";
             break;
